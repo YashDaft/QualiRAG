@@ -1,0 +1,9 @@
+python-dotenv
+pydantic-settings
+langchain
+langgraph
+langchain-pinecone
+langchain-anthropic
+langchain-text-splitters
+langchain-huggingface
+
