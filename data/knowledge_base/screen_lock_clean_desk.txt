@@ -1,0 +1,24 @@
+KB-1070: SCREEN LOCK AND CLEAN DESK
+===================================
+
+Applies to: All employees and contractors
+
+Owner: Information Security | Last reviewed: 2026-01-20
+
+Screen lock
+-----------
+Company laptops lock automatically after 10 minutes without activity. Lock your screen yourself every time you leave your desk by pressing Windows key + L. Store staff must sign out of POS terminals at the end of each shift.
+
+Clean desk
+----------
+  * Keep Confidential and Restricted printouts in a locked drawer when you are away from your desk.
+  * Dispose of printed documents in the secure shredding bins, not in normal recycling.
+  * Do not leave notes with passwords or account details on desks or monitors.
+
+Visitors
+--------
+Visitors must sign in at reception and be escorted by a Brightwick employee at all times.
+
+Badges
+------
+Never lend your building badge to anyone. A lost badge must be reported to Facilities the same day.

@@ -1,0 +1,28 @@
+KB-1033: LOST OR DAMAGED HARDWARE SECURITY KEY
+==============================================
+
+Applies to: Employees who have been issued a hardware security key
+
+Owner: Identity and Access Management | Last reviewed: 2026-03-11
+
+Who has hardware keys
+---------------------
+Hardware security keys are issued to cloud administrators, privileged account holders and Finance staff who approve payments. Contractors are not issued hardware keys.
+
+Report it straight away
+-----------------------
+Report a lost, stolen or damaged key immediately, and no later than 1 hour after you notice, by calling the IT Service Desk. The key is revoked as soon as it is reported, so it can no longer be used to sign in.
+
+Signing in while you wait
+-------------------------
+If the company authenticator app is registered on your account, use it for normal sign-ins. If the key was your only method, the IT Service Desk can issue a Temporary Access Pass after verifying your identity, as described in KB-1030.
+
+Privileged administrator accounts require a hardware key. Until the replacement arrives, holders of privileged accounts must not use them, unless the Security team grants a time-limited exception.
+
+Replacement
+-----------
+Collect a replacement key from the IT Bar on Level 2 at headquarters, or ask for it to be couriered. Replacements are normally available within 3 business days.
+
+If you find the old key
+-----------------------
+Do not use it again. A revoked key cannot be re-registered. Return it to the IT Bar so it can be destroyed securely.

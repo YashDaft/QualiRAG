@@ -11,7 +11,9 @@ class Settings(BaseSettings):
     app_name: str = "QauliRAG"
     app_env: str = "development"
     #secrets
-    ANTHROPIC_API_KEY: str = ""
+    anthropic_api_key: str = ""
+    #for embedding models
+    openai_api_key: str = ""
     tavily_api_key: str = ""
     pinecone_api_key: str = ""
     embedding_model: str = "text-embedding-3-small"
@@ -29,12 +31,10 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=str(BASE_DIR/ ".env"), extra="ignore")
 
 
-#skips the function and hands back the same saved object
+#skips the function and hands back the same saved object for fastapi no re-reading or reparsing
 @lru_cache
 def get_settings() -> Settings:
     return Settings()
-
-
 
 
     

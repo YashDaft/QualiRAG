@@ -1,0 +1,28 @@
+KB-1052: HANDHELD BARCODE SCANNER PROBLEMS
+==========================================
+
+Applies to: Store employees
+
+Owner: Retail Systems | Last reviewed: 2026-09-01
+
+Pairing a scanner
+-----------------
+Handheld scanners pair with their charging dock and with the StoreHub app.
+
+  1) Place the scanner in its dock for 10 seconds.
+  2) Scan the "Pair" barcode printed on the label on the dock.
+  3) Two short beeps mean the scanner is paired. One long beep means pairing failed, so repeat the steps.
+
+Battery
+-------
+If the scanner turns off during a shift, swap the battery with a charged spare. Spare batteries are kept charging in the back office.
+
+Scanner does not read barcodes
+------------------------------
+  * Clean the scanner window with a dry cloth.
+  * Check that the scanner is not in Inventory mode. The mode is shown at the top of the screen.
+  * Try scanning a different product to rule out a damaged label.
+
+Replacing a faulty scanner
+--------------------------
+Take a scanner from the store's spare pool and pair it. Raise a P4 ticket if a spare was available, or a P3 ticket if the store has no working spare. Return the faulty scanner in the replacement box when it arrives.

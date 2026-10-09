@@ -1,0 +1,29 @@
+KB-1024: FOLLOW-ME PRINTING AT HEADQUARTERS
+===========================================
+
+Applies to: Headquarters staff
+
+Owner: Workplace Technology | Last reviewed: 2026-04-08
+
+How it works
+------------
+Headquarters uses Follow-Me printing. Send your document to the BW-FollowMe print queue, then release it at any headquarters printer by tapping your building badge on the card reader. Jobs are held for 24 hours. Unreleased jobs are deleted after that.
+
+Defaults
+--------
+Printing is set to black and white, double-sided by default. Colour printing is available on the second and fourth floors and must be selected in the print dialog.
+
+First-time setup
+----------------
+The first time you tap your badge, the printer asks you to link it to your account. Enter your network username and password on the printer screen once. After that, your badge releases your jobs automatically.
+
+Printing sensitive documents
+----------------------------
+Release Confidential documents only while you are standing at the printer. Printing Restricted documents is only allowed when there is a clear business need, and the printout must be stored in a locked drawer or shredded.
+
+Troubleshooting
+---------------
+  * Badge not recognised: link the badge again by entering your username on the printer screen.
+  * Job does not appear: check that you printed to BW-FollowMe and not to a printer's direct queue.
+  * Paper jam or printer error: note the printer asset tag on the front panel and raise a P4 ticket in ServicePoint.
+Store office printers do not use Follow-Me printing. Receipt printers at the tills are covered in KB-1053.

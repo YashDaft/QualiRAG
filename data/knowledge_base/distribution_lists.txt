@@ -1,0 +1,23 @@
+KB-1041: DISTRIBUTION LISTS
+===========================
+
+Applies to: All employees
+
+Owner: Messaging Team | Last reviewed: 2026-02-17
+
+Creating a list
+---------------
+Request a new distribution list through ServicePoint. The list owner must be a permanent employee. Two owners are recommended so that the list is not orphaned when someone leaves.
+
+Members
+-------
+Lists can include employees and contractors. Adding external email addresses requires a Security review, because external members receive internal information.
+
+Managing membership
+-------------------
+Owners can add and remove members themselves in MyAccess under Groups. A ticket is not needed for membership changes.
+
+Restrictions
+------------
+  * Lists with more than 500 members only accept messages from approved senders.
+  * Company-wide lists, such as All Staff, can only be used by Internal Communications.

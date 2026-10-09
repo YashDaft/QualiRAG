@@ -1,0 +1,36 @@
+REMOTE WORK GUIDELINES 2024
+===========================
+
+Document ID: HR-IT-RW-2024 | Version: 1.0 | Effective date: 2024-02-01
+
+Owner: HR and IT | Classification: Internal
+
+Status: SUPERSEDED on 2026-01-15 by the Acceptable Use Policy v2.0 (POL-SEC-003). Retained for reference only.
+
+1. Purpose
+----------
+These guidelines help employees work safely from home and while travelling.
+
+2. Devices
+----------
+Employees should use their company laptop for remote work wherever possible. Employees without a company laptop may use a personal laptop to open company webmail and the HR portal in a web browser. Personal laptops must have antivirus software installed and up to date.
+
+3. Connecting to company systems
+--------------------------------
+Connect to the VPN from your company laptop before using internal systems. The VPN is not needed for webmail or the HR portal.
+
+4. Home and public networks
+---------------------------
+Home Wi-Fi must use WPA2 or stronger encryption and must not use the router's default password. Public Wi-Fi may be used for webmail without the VPN. Use the VPN on public Wi-Fi for everything else.
+
+5. Printing at home
+-------------------
+Internal documents may be printed at home. Confidential documents must not be printed at home.
+
+6. Working abroad
+-----------------
+Tell your manager before working from another country for more than 2 weeks.
+
+7. Getting help
+---------------
+Contact the IT Service Desk by phone or email for remote work problems.

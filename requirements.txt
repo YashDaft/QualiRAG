@@ -5,5 +5,6 @@ langgraph
 langchain-pinecone
 langchain-anthropic
 langchain-text-splitters
-langchain-huggingface
-
+langchain-community
+docx2txt
+langchain-openai

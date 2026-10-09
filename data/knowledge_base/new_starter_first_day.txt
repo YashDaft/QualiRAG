@@ -1,0 +1,30 @@
+KB-1060: YOUR FIRST DAY: IT SETUP
+=================================
+
+Applies to: New employees
+
+Owner: IT Service Desk | Last reviewed: 2026-08-12
+
+Collect your equipment
+----------------------
+Headquarters staff collect their laptop from the IT Bar on Level 2, which is open 08:30 to 17:30 on weekdays. Remote staff receive their laptop by courier before their start date. Store staff do not receive a laptop; they use the store's StoreHub PC.
+
+Activate your account
+---------------------
+On the morning of your first day, your manager receives a Temporary Access Pass for you. Use it to sign in to MyAccess, then set your password. Passwords must be at least 14 characters.
+
+Register MFA within 24 hours
+----------------------------
+Install the company authenticator app and register it in MyAccess within 24 hours of your first sign-in. If you do not, your account is locked until the IT Service Desk verifies your identity.
+
+Complete security training
+--------------------------
+Complete the Security Awareness course in the learning portal within 7 days of your start date.
+
+Getting software
+----------------
+Install business software from the Software Portal. Anything not listed there must be requested through ServicePoint.
+
+Getting help
+------------
+Contact the IT Service Desk through ServicePoint, by phone on extension 4357, or in person at the IT Bar.
