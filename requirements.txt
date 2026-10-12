@@ -8,3 +8,4 @@ langchain-text-splitters
 langchain-community
 docx2txt
 langchain-openai
+pypdf

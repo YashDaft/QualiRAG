@@ -21,12 +21,14 @@ class Settings(BaseSettings):
     anthropic_model: str = "claude-haiku-4-5-20251001"
     pinecone_namespace: str = "knowledge_base"
     top_k: int = 4
+    max_retries: int = 1
+    admin_api_key: str = "change-me"
     #for storing conversations
     audit_db_path: str = str(BASE_DIR/"data"/"audit.db")
     #stored documents
     upload_dir: str = str(BASE_DIR/"uploads")
     #knowledge base local
-    sample_db_dir: str = str(BASE_DIR/"data"/"sample.kb")
+    kb_dir: str = str(BASE_DIR/"data"/"knowledge_base")
 
     model_config = SettingsConfigDict(env_file=str(BASE_DIR/ ".env"), extra="ignore")
 

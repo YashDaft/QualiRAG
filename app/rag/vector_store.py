@@ -3,6 +3,9 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone, ServerlessSpec
 
+from collections import Counter
+from pathlib import Path
+
 from app.core.config import get_settings
 
 settings = get_settings()
@@ -106,7 +109,22 @@ def get_retriever():
 
 def add_documents(chunks):
     store = get_vectorstore()
-    return store.add_documents(chunks)
+    #method of pinecone object
+    
+    #fixed id per chunk: file name + its position within that file
+    counts = Counter()
+    ids = []
+    for chunk in chunks:
+        source = Path(chunk.metadata["source"])
+
+        ids.append(f"{source}-{counts[source]}")
+        counts[source] += 1
+
+
+    return store.add_documents(chunks, ids=ids)
+
+
+
 
 
 
