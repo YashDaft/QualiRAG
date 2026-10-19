@@ -3,7 +3,7 @@ from typing_extensions import TypedDict
 from pydantic import BaseModel, Field
 from langchain_core.documents import Document
 
-#BaseModel: where you need validated data from the LLM
+#BaseModel: validated data from the LLM
 class RouteDecision(BaseModel):
     #Literal: the value must be exactly one of these
     route: Literal["kb", "direct"] = Field(
@@ -15,7 +15,7 @@ class RouteDecision(BaseModel):
     )
 
 
-class EvidenceGrade(BaseModel):
+class GradeEvidence(BaseModel):
     grade: Literal["good", "weak"] = Field(
         description=(
             "good if the retrieved passages contain the specific facts needed to "
@@ -38,6 +38,7 @@ class AgentState(TypedDict):
     retry_count: int
     trace: list[str]
     citations: list[dict]
+
 
 
 
