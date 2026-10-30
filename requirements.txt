@@ -10,3 +10,4 @@ docx2txt
 langchain-openai
 pypdf
 langchain-tavily
+fastapi
