@@ -4,10 +4,14 @@ langchain
 langgraph
 langchain-pinecone
 langchain-anthropic
+langchain-openai
 langchain-text-splitters
 langchain-community
-docx2txt
-langchain-openai
-pypdf
 langchain-tavily
+pinecone
+docx2txt
+pypdf
 fastapi
+uvicorn[standard]
+python-multipart
+jinja2
