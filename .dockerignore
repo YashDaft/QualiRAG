@@ -1,0 +1,12 @@
+.env
+.venv
+.git
+.gitignore
+__pycache__/
+*.pyc
+data/
+uploads/
+ingest_kb.py
+requirements.txt
+Dockerfile
+.dockerignore

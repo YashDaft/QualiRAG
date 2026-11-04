@@ -47,4 +47,5 @@ print(f"Indexed {len(files)} files -> {len(chunks)} chunks -> {len(ids)} pinecon
 
 
 
+
     
