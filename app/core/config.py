@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     pinecone_namespace: str = "knowledge_base"
     top_k: int = 4
     max_retries: int = 1
-    admin_api_key: str = "change-me"
+    admin_api_key: str = "upload_documents"
     #for storing conversations
     audit_db_path: str = str(BASE_DIR/"data"/"audit.db")
     #stored documents
