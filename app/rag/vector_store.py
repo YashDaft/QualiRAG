@@ -121,7 +121,7 @@ def add_documents(chunks):
         counts[source] += 1
 
 
-    return store.add_documents(chunks, ids=ids)
+    return store.add_documents(chunks, ids=ids, async_req=False)
 
 
 
