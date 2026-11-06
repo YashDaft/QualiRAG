@@ -9,7 +9,7 @@ Built as a corrective RAG agent with LangGraph, Claude, Pinecone and FastAPI, on
 ![FastAPI](https://img.shields.io/badge/API-FastAPI-009688)
 ![Deployed on Vercel](https://img.shields.io/badge/deployed-Vercel-000000)
 
-**Live demo:** https://YOUR-DOMAIN.vercel.app
+**Live demo:** quali-rag.vercel.app
 
 Try "How do I set up MFA on my new phone?" for a knowledge base answer, "How do I clear the Microsoft Teams cache on Windows 11?" for a web answer, and "What is the parental leave policy?" to see it decline. The panel on the right shows which path the agent took and why.
 
