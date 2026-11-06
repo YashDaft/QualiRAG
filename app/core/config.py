@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 #configuration settings class
 class Settings(BaseSettings):
     #configuration variables
-    app_name: str = "QauliRAG"
+    app_name: str = "QualiRAG"
     app_env: str = "development"
     #secrets
     anthropic_api_key: str = ""
