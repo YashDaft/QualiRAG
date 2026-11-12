@@ -1,0 +1,31 @@
+KB-1078: OUT-OF-OFFICE REPLIES AND EMAIL SIGNATURES
+===================================================
+
+Applies to: All employees
+
+Owner: Messaging | Last reviewed: 2026-10-02
+
+Setting an out-of-office reply
+------------------------------
+In the Outlook desktop app, go to File > Automatic Replies. In Outlook on the web, go to Settings > Mail > Automatic replies. You can set a start and end time, and write separate messages for people inside Brightwick and people outside.
+
+What to put in an external reply
+--------------------------------
+Keep external replies short: the date you are back and who to contact instead. Do not include your personal mobile number, your home address, or where you are travelling. Use a shared mailbox or a team address as the alternative contact where one exists, not a colleague's personal address.
+
+Setting a reply for someone else
+--------------------------------
+You cannot set an out-of-office reply on another person's mailbox. If an employee is away unexpectedly and their mailbox needs a reply, their line manager raises a request in ServicePoint under "Mailbox changes". The Messaging team sets the reply within 1 business day of the request, and removes it when the manager asks or on the end date given. The manager can also ask for new email to be forwarded to a named colleague for up to 30 days.
+
+Email signature standard
+------------------------
+Every employee uses the same plain-text signature format:
+
+    Full name
+    Job title | Team
+    Brightwick Retail Group
+    Phone number (work number only)
+
+Do not add images, logos, quotes or social media icons. The company logo is added automatically to external email by the mail system, so adding your own copy shows it twice.
+
+To change your job title or team in the signature, ask your line manager to update your HR record. The signature template updates from the HR record overnight, so you do not need to edit it by hand.

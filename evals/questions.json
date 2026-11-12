@@ -1,0 +1,1929 @@
+{
+  "description": "QualiRAG evaluation set for the synthetic Brightwick Retail Group knowledge base: the 35 documents in data/knowledge_base/ plus the 5 documents added through the upload feature (copies in data/upload_samples/). Every evidence quote appears in its source file. Set human_verified to true after checking each question.",
+  "routes": [
+    "private_kb",
+    "web_search",
+    "direct",
+    "insufficient_evidence"
+  ],
+  "questions": [
+    {
+      "id": "S01",
+      "category": "single_doc",
+      "question": "I'm getting a new phone. How do I move my authenticator app to it?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "mfa_new_phone.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Do it while the old phone still works. Install the company authenticator app on the new phone, sign in to MyAccess and open Security info, choose Add sign-in method, pick the authenticator app and scan the QR code with the new phone. Approve a test prompt on the new phone, then remove the old phone from Security info. Only then reset or hand in the old phone.",
+      "key_facts": [
+        "set up the new phone while the old one still works",
+        "MyAccess > Security info > Add sign-in method",
+        "approve a test prompt, then remove the old phone"
+      ],
+      "evidence": [
+        {
+          "source": "mfa_new_phone.md",
+          "quote": "Select Add sign-in method, choose the authenticator app and scan the QR code with the new phone."
+        },
+        {
+          "source": "mfa_new_phone.md",
+          "quote": "Approve a test prompt on the new phone, then remove the old phone from Security info."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S02",
+      "category": "single_doc",
+      "question": "I lost my phone so I can't approve MFA prompts. How do I get back into my account?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "mfa_new_phone.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Call the IT Service Desk. Because MFA isn't available, the analyst verifies your identity through a video call with your manager present or a callback to your manager's registered phone number. They then issue a Temporary Access Pass, valid for 8 hours, which you use to sign in to MyAccess and register the new phone.",
+      "key_facts": [
+        "call the IT Service Desk",
+        "identity verified through the manager (video call or callback)",
+        "Temporary Access Pass valid for 8 hours"
+      ],
+      "evidence": [
+        {
+          "source": "mfa_new_phone.md",
+          "quote": "This is done through a video call with your manager present, or through a callback to your manager's registered phone number."
+        },
+        {
+          "source": "mfa_new_phone.md",
+          "quote": "A TAP is valid for 8 hours and lets you sign in to MyAccess to register the new phone."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S03",
+      "category": "single_doc",
+      "question": "How do I pair a handheld barcode scanner?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "barcode_scanner_pairing.txt"
+      ],
+      "source_match": "any",
+      "reference_answer": "Put the scanner in its dock for 10 seconds, then scan the \"Pair\" barcode on the label on the dock. Two short beeps mean it paired; one long beep means it failed, so repeat the steps.",
+      "key_facts": [
+        "dock for 10 seconds",
+        "scan the Pair barcode on the dock label",
+        "two short beeps = paired, one long beep = failed"
+      ],
+      "evidence": [
+        {
+          "source": "barcode_scanner_pairing.txt",
+          "quote": "Place the scanner in its dock for 10 seconds."
+        },
+        {
+          "source": "barcode_scanner_pairing.txt",
+          "quote": "Two short beeps mean the scanner is paired. One long beep means pairing failed, so repeat the steps."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S04",
+      "category": "single_doc",
+      "question": "I deleted a file from Brightwick Drive last week. Can I get it back?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "brightwick_drive_sync.md",
+        "sop_backup_and_restore.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Yes. Deleted files stay in the Brightwick Drive recycle bin for 93 days, and you can restore it yourself without a ticket. Earlier versions can also be restored from the file's version history, which keeps the last 100 versions.",
+      "key_facts": [
+        "recycle bin keeps files for 93 days",
+        "self-service restore, no ticket needed"
+      ],
+      "evidence": [
+        {
+          "source": "brightwick_drive_sync.md",
+          "quote": "Deleted files stay in the Brightwick Drive recycle bin for 93 days."
+        },
+        {
+          "source": "sop_backup_and_restore.md",
+          "quote": "Users can restore their own Brightwick Drive files from the recycle bin or the version history without raising a ticket."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S05",
+      "category": "single_doc",
+      "question": "How do I get access to my team's shared mailbox, and how long does it take?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "shared_mailbox_access.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Submit the \"Shared mailbox access\" form in ServicePoint with the mailbox, the access type and the business reason. The mailbox owner must approve it. Access is applied within 1 business day after approval, and the mailbox appears in the desktop mail client within 60 minutes after that.",
+      "key_facts": [
+        "Shared mailbox access form in ServicePoint",
+        "mailbox owner approves",
+        "1 business day after approval",
+        "appears within 60 minutes"
+      ],
+      "evidence": [
+        {
+          "source": "shared_mailbox_access.md",
+          "quote": "The mailbox owner must approve every request."
+        },
+        {
+          "source": "shared_mailbox_access.md",
+          "quote": "Access is applied within 1 business day after approval. The mailbox then appears in the desktop mail client automatically within 60 minutes."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S06",
+      "category": "single_doc",
+      "question": "Do I need to raise a ticket to add someone to a distribution list I own?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "distribution_lists.txt"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. List owners add and remove members themselves in MyAccess under Groups. No ticket is needed for membership changes. Adding external email addresses needs a Security review.",
+      "key_facts": [
+        "no ticket needed",
+        "owners manage members in MyAccess under Groups"
+      ],
+      "evidence": [
+        {
+          "source": "distribution_lists.txt",
+          "quote": "Owners can add and remove members themselves in MyAccess under Groups. A ticket is not needed for membership changes."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S07",
+      "category": "single_doc",
+      "question": "I typed my password into a link from a phishing email. What do I do now?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "report_phishing.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Change your password immediately in MyAccess, then call the IT Service Desk and say \"possible credential compromise\". The service desk logs a P2 security incident and the SOC signs you out of all sessions.",
+      "key_facts": [
+        "change the password in MyAccess immediately",
+        "call the IT Service Desk: possible credential compromise",
+        "logged as a P2 security incident"
+      ],
+      "evidence": [
+        {
+          "source": "report_phishing.md",
+          "quote": "Change your password immediately in MyAccess."
+        },
+        {
+          "source": "report_phishing.md",
+          "quote": "The service desk logs a P2 security incident, and the SOC signs you out of all sessions."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S08",
+      "category": "single_doc",
+      "question": "I opened an attachment from a suspicious email. Should I shut my laptop down?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "report_phishing.md",
+        "runbook_security_incident_triage.md",
+        "laptop_repair_and_replacement.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Disconnect it from the network by turning off Wi-Fi or unplugging the cable, but don't power it off, because the SOC may need its memory for the investigation. Then call the IT Service Desk immediately.",
+      "key_facts": [
+        "disconnect from the network",
+        "do not power off",
+        "call the IT Service Desk immediately"
+      ],
+      "evidence": [
+        {
+          "source": "report_phishing.md",
+          "quote": "Disconnect the device from the network by turning off Wi-Fi or unplugging the cable. Do not power off the device, because the SOC may need its memory for the investigation."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S09",
+      "category": "single_doc",
+      "question": "Why doesn't my USB stick work on my company laptop?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "usb_removable_media.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "USB storage is blocked on company laptops for reading and writing. If you have a business need, request a company-issued encrypted USB drive through ServicePoint, which needs manager approval and a Security review. Otherwise share files with a Brightwick Drive link or the secure file transfer service.",
+      "key_facts": [
+        "USB storage is blocked",
+        "encrypted company drive via ServicePoint with manager approval and Security review"
+      ],
+      "evidence": [
+        {
+          "source": "usb_removable_media.md",
+          "quote": "USB storage devices are blocked on company laptops for both reading and writing."
+        },
+        {
+          "source": "usb_removable_media.md",
+          "quote": "The request needs manager approval and a Security review."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S10",
+      "category": "single_doc",
+      "question": "I get 'You are not assigned to this application' when I sign in to an app. What should I do?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "sso_login_errors.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Your account doesn't have access to that application. Request it in ServicePoint with the \"Application access\" form; the application owner must approve it. It isn't a fault, so don't raise it as an incident.",
+      "key_facts": [
+        "request access with the Application access form",
+        "application owner approves",
+        "not an incident"
+      ],
+      "evidence": [
+        {
+          "source": "sso_login_errors.md",
+          "quote": "Request access through ServicePoint using the \"Application access\" form. The application owner must approve the request."
+        },
+        {
+          "source": "sso_login_errors.md",
+          "quote": "This is not a fault, so do not raise it as an incident."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S11",
+      "category": "single_doc",
+      "question": "What's the guest Wi-Fi password at headquarters?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "wifi_networks.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "The BW-Guest password changes every Monday. At headquarters it's shown on the reception screens. Guest sessions expire after 12 hours.",
+      "key_facts": [
+        "changes every Monday",
+        "shown on the reception screens at headquarters"
+      ],
+      "evidence": [
+        {
+          "source": "wifi_networks.md",
+          "quote": "The BW-Guest password changes every Monday. At headquarters it is shown on the reception screens"
+        }
+      ],
+      "trap": "The answer must not invent a password.",
+      "human_verified": true
+    },
+    {
+      "id": "S12",
+      "category": "single_doc",
+      "question": "What are the IT service desk's hours on a Sunday?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "policy_it_service_levels.pdf"
+      ],
+      "source_match": "any",
+      "reference_answer": "09:00 to 18:00 on Sunday. P1 and P2 incidents are handled 24/7 through the on-call phone line.",
+      "key_facts": [
+        "Sunday 09:00 to 18:00",
+        "P1 and P2 handled 24/7 by phone"
+      ],
+      "evidence": [
+        {
+          "source": "policy_it_service_levels.pdf",
+          "quote": "Sunday: 09:00 to 18:00."
+        },
+        {
+          "source": "policy_it_service_levels.pdf",
+          "quote": "P1 and P2 incidents are handled 24 hours a day, 7 days a week, through the on-call phone line."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S13",
+      "category": "single_doc",
+      "question": "Can I get local admin rights so I can install an app I need?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "software_request_process.md",
+        "company_it_handbook.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Administrator access isn't granted just to install applications. Install from the Software Portal, or request software that isn't there through ServicePoint. Developers who need elevated rights for their work can request time-limited elevation through the Privileged Access tool, with manager approval, for up to 4 hours per request.",
+      "key_facts": [
+        "admin rights are not granted to install apps",
+        "use the Software Portal or a ServicePoint request",
+        "developers: Privileged Access tool, max 4 hours"
+      ],
+      "evidence": [
+        {
+          "source": "software_request_process.md",
+          "quote": "Administrator access is not granted simply to install applications."
+        },
+        {
+          "source": "software_request_process.md",
+          "quote": "It needs manager approval and lasts a maximum of 4 hours per request."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S14",
+      "category": "single_doc",
+      "question": "How long can I postpone the restart after a security update on my laptop?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "sop_patch_management.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "Up to 7 days. After that, the laptop restarts automatically outside working hours.",
+      "key_facts": [
+        "up to 7 days",
+        "then restarts automatically outside working hours"
+      ],
+      "evidence": [
+        {
+          "source": "sop_patch_management.docx",
+          "quote": "Users can postpone the restart for up to 7 days. After 7 days, the laptop restarts automatically outside working hours."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S15",
+      "category": "single_doc",
+      "question": "Can IT restore a file that was deleted from our department file share 40 days ago?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "sop_backup_and_restore.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Departmental file share backups are kept for 35 days, so a file deleted 40 days ago is no longer in the backups.",
+      "key_facts": [
+        "file share backups kept 35 days",
+        "40 days ago cannot be restored"
+      ],
+      "evidence": [
+        {
+          "source": "sop_backup_and_restore.md",
+          "quote": "For example, a file deleted from a departmental share 40 days ago is no longer in the backups."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S16",
+      "category": "single_doc",
+      "question": "Is it okay to paste customer data into a public AI chatbot to help me write a reply?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "policy_acceptable_use.pdf"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. In public generative AI tools you must not enter Confidential or Restricted information, including customer data. Brightwick Assistant is the company's approved generative AI tool.",
+      "key_facts": [
+        "no customer data in public AI tools",
+        "Brightwick Assistant is the approved tool"
+      ],
+      "evidence": [
+        {
+          "source": "policy_acceptable_use.pdf",
+          "quote": "Brightwick Assistant is the company's approved generative AI tool"
+        },
+        {
+          "source": "policy_acceptable_use.pdf",
+          "quote": "do not enter Confidential or Restricted information, including customer data, employee data or source code"
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S17",
+      "category": "single_doc",
+      "question": "Someone from the service desk phoned and asked me to read out my MFA code. Should I?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "mfa_new_phone.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. The IT Service Desk never asks you to read out an MFA code or a TAP. End the call and report it using KB-1027, the phishing reporting process.",
+      "key_facts": [
+        "never read out an MFA code",
+        "end the call and report it"
+      ],
+      "evidence": [
+        {
+          "source": "mfa_new_phone.md",
+          "quote": "The IT Service Desk will never ask you to read out an MFA code or a TAP that was sent to you. If someone asks, end the call and report it using KB-1027."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S18",
+      "category": "single_doc",
+      "question": "Can I turn off the firewall to get the VPN working?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "company_it_handbook.md",
+        "policy_acceptable_use.pdf"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Don't disable endpoint security or the firewall to make the VPN work. Confirm internet connectivity, restart the client and try another corporate gateway, then open a ticket with a screenshot of the error.",
+      "key_facts": [
+        "do not disable the firewall",
+        "check connectivity, restart client, try another gateway",
+        "open a ticket with a screenshot"
+      ],
+      "evidence": [
+        {
+          "source": "company_it_handbook.md",
+          "quote": "Do not disable endpoint security or firewall settings to make the VPN work."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S19",
+      "category": "single_doc",
+      "question": "Someone on my team leaves on Friday. What happens to their mailbox and their Brightwick Drive files?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "sop_employee_offboarding.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "Their mailbox is converted to a shared mailbox, the line manager gets access, and it's kept for 90 days before deletion. Their Brightwick Drive files are transferred to the line manager, who has 30 days to move anything the business needs before the files are deleted.",
+      "key_facts": [
+        "mailbox becomes a shared mailbox for the manager, kept 90 days",
+        "Drive files go to the manager, 30 days to move them"
+      ],
+      "evidence": [
+        {
+          "source": "sop_employee_offboarding.docx",
+          "quote": "The leaver's mailbox is converted to a shared mailbox and the line manager is given access. The mailbox is kept for 90 days and then deleted."
+        },
+        {
+          "source": "sop_employee_offboarding.docx",
+          "quote": "The leaver's Brightwick Drive files are transferred to the line manager, who has 30 days to move anything needed for the business."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S20",
+      "category": "single_doc",
+      "question": "How long before my laptop locks itself, and how do I lock it myself?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "screen_lock_clean_desk.txt"
+      ],
+      "source_match": "any",
+      "reference_answer": "Company laptops lock automatically after 10 minutes without activity. Lock it yourself every time you leave your desk with Windows key + L.",
+      "key_facts": [
+        "locks after 10 minutes",
+        "Windows key + L"
+      ],
+      "evidence": [
+        {
+          "source": "screen_lock_clean_desk.txt",
+          "quote": "Company laptops lock automatically after 10 minutes without activity."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S21",
+      "category": "single_doc",
+      "question": "Can I email Restricted information to a colleague inside the company?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "policy_information_security.pdf",
+        "policy_acceptable_use.pdf"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Restricted information must never be sent by email or chat, even internally.",
+      "key_facts": [
+        "Restricted information is never sent by email or chat"
+      ],
+      "evidence": [
+        {
+          "source": "policy_information_security.pdf",
+          "quote": "Restricted information must never be sent by email or chat."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S22",
+      "category": "single_doc",
+      "question": "How do I send a Confidential document to an external partner by email?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "policy_information_security.pdf"
+      ],
+      "source_match": "any",
+      "reference_answer": "Confidential information sent outside the company must be encrypted with the \"Encrypt\" option in the mail client. Sharing Confidential information externally also needs manager approval.",
+      "key_facts": [
+        "use the Encrypt option in the mail client",
+        "manager approval before sharing externally"
+      ],
+      "evidence": [
+        {
+          "source": "policy_information_security.pdf",
+          "quote": "Confidential information sent outside the company must be encrypted using the \"Encrypt\" option in the mail client."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S23",
+      "category": "single_doc",
+      "question": "When does a P2 incident count as a major incident?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "runbook_major_incident_management.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "A P2 is treated as a major incident when it affects more than 10 stores at the same time, or when it's expected to exceed its resolution target in the IT Service Level Policy.",
+      "key_facts": [
+        "affects more than 10 stores at once",
+        "expected to exceed its resolution target"
+      ],
+      "evidence": [
+        {
+          "source": "runbook_major_incident_management.md",
+          "quote": "It is a P2 that affects more than 10 stores at the same time."
+        },
+        {
+          "source": "runbook_major_incident_management.md",
+          "quote": "It is a P2 that is expected to exceed its resolution target in the IT Service Level Policy."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "S24",
+      "category": "single_doc",
+      "question": "What counts as a P3 ticket?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "service_desk_runbook.md",
+        "policy_it_service_levels.pdf"
+      ],
+      "source_match": "any",
+      "reference_answer": "A P3 is an individual user blocked or degraded with a limited workaround.",
+      "key_facts": [
+        "individual user blocked or degraded",
+        "limited workaround"
+      ],
+      "evidence": [
+        {
+          "source": "service_desk_runbook.md",
+          "quote": "P3: individual user blocked or degraded with limited workaround."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "P01",
+      "category": "superseded_trap",
+      "question": "What's the minimum length for my company password?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "policy_access_control.docx",
+        "company_it_handbook.md",
+        "new_starter_first_day.txt",
+        "sop_employee_onboarding.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "14 characters, under the current Access Control Policy.",
+      "key_facts": [
+        "14 characters"
+      ],
+      "evidence": [
+        {
+          "source": "policy_access_control.docx",
+          "quote": "Minimum length 14 characters"
+        },
+        {
+          "source": "company_it_handbook.md",
+          "quote": "Company passwords must be at least 14 characters."
+        }
+      ],
+      "trap": "password_standard_v2.1.md (superseded) says 12 characters.",
+      "human_verified": true
+    },
+    {
+      "id": "P02",
+      "category": "superseded_trap",
+      "question": "How often do I have to change my password?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "policy_access_control.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "There is no scheduled expiry. You only change it if a compromise is suspected.",
+      "key_facts": [
+        "no scheduled expiry",
+        "change only if compromise is suspected"
+      ],
+      "evidence": [
+        {
+          "source": "policy_access_control.docx",
+          "quote": "Scheduled expiry None; change only if compromise is suspected"
+        }
+      ],
+      "trap": "password_standard_v2.1.md (superseded) says every 90 days.",
+      "human_verified": true
+    },
+    {
+      "id": "P03",
+      "category": "superseded_trap",
+      "question": "How many failed sign-ins lock my account, and how long until it unlocks?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "account_lockout.md",
+        "policy_access_control.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "The account locks after 5 failed attempts and unlocks automatically after 30 minutes. You can also unlock it straight away in MyAccess with MFA.",
+      "key_facts": [
+        "5 failed attempts",
+        "unlocks after 30 minutes",
+        "or unlock immediately in MyAccess"
+      ],
+      "evidence": [
+        {
+          "source": "account_lockout.md",
+          "quote": "Your account locks after 5 failed sign-in attempts."
+        },
+        {
+          "source": "account_lockout.md",
+          "quote": "Wait 30 minutes. The account unlocks automatically."
+        }
+      ],
+      "trap": "password_standard_v2.1.md (superseded) says 10 attempts and 15 minutes.",
+      "human_verified": true
+    },
+    {
+      "id": "P04",
+      "category": "superseded_trap",
+      "question": "Can I use my personal laptop to check my work webmail when I'm working from home?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "policy_acceptable_use.pdf",
+        "byod_mobile_email.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Personal laptops and tablets may not access company email or other company systems; they can only use BW-Guest for internet access. The old rule allowing webmail on personal laptops no longer applies.",
+      "key_facts": [
+        "no company email on personal laptops",
+        "the old webmail rule no longer applies"
+      ],
+      "evidence": [
+        {
+          "source": "byod_mobile_email.md",
+          "quote": "Personal laptops and tablets may not access company email or other company systems."
+        },
+        {
+          "source": "policy_acceptable_use.pdf",
+          "quote": "That rule no longer applies."
+        }
+      ],
+      "trap": "remote_work_guidelines_2024.txt (superseded) allowed webmail on personal laptops.",
+      "human_verified": true
+    },
+    {
+      "id": "P05",
+      "category": "superseded_trap",
+      "question": "Can I check my email on public Wi-Fi without the VPN?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "policy_acceptable_use.pdf"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Public Wi-Fi may only be used with the VPN connected.",
+      "key_facts": [
+        "public Wi-Fi only with the VPN connected"
+      ],
+      "evidence": [
+        {
+          "source": "policy_acceptable_use.pdf",
+          "quote": "Public Wi-Fi may only be used with the VPN connected."
+        }
+      ],
+      "trap": "remote_work_guidelines_2024.txt (superseded) allowed webmail on public Wi-Fi without the VPN.",
+      "human_verified": true
+    },
+    {
+      "id": "P06",
+      "category": "superseded_trap",
+      "question": "Can I use SMS codes for MFA?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "mfa_new_phone.md",
+        "policy_access_control.docx",
+        "company_it_handbook.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Not as an everyday method. The approved methods are the company authenticator app and registered hardware security keys. SMS can only be used as a recovery method when IT has explicitly enabled it on your account.",
+      "key_facts": [
+        "SMS is not an approved everyday method",
+        "only as a recovery method when IT enables it",
+        "authenticator app or hardware key"
+      ],
+      "evidence": [
+        {
+          "source": "mfa_new_phone.md",
+          "quote": "SMS codes are not an approved everyday method."
+        },
+        {
+          "source": "policy_access_control.docx",
+          "quote": "SMS may only be used as a recovery method when IT has explicitly enabled it."
+        }
+      ],
+      "trap": "password_standard_v2.1.md (superseded) says SMS codes are an accepted MFA method.",
+      "human_verified": true
+    },
+    {
+      "id": "P07",
+      "category": "superseded_trap",
+      "question": "I forgot my password. Can I call the service desk and confirm who I am with my employee ID and date of birth?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "policy_access_control.docx",
+        "account_lockout.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Passwords are reset by self-service in MyAccess with MFA. The service desk never asks for your password; it confirms who you are with an MFA prompt to your registered device or through your manager.",
+      "key_facts": [
+        "self-service reset in MyAccess with MFA",
+        "identity confirmed by MFA prompt or through the manager"
+      ],
+      "evidence": [
+        {
+          "source": "policy_access_control.docx",
+          "quote": "Self-service in MyAccess with MFA"
+        },
+        {
+          "source": "account_lockout.md",
+          "quote": "To confirm who you are, the analyst sends an MFA prompt to your registered device or verifies you through your manager."
+        }
+      ],
+      "trap": "password_standard_v2.1.md (superseded) describes verification by employee ID and date of birth.",
+      "human_verified": true
+    },
+    {
+      "id": "A01",
+      "category": "audience_trap",
+      "question": "I'm a contractor. How do I connect to Brightwick systems from home?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "contractor_remote_access.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Contractors don't get BrightSecure VPN access. They use Brightwick Remote Workspace, a browser-based virtual desktop at workspace.brightwick.example, with MFA through the company authenticator app.",
+      "key_facts": [
+        "no VPN for contractors",
+        "Brightwick Remote Workspace at workspace.brightwick.example"
+      ],
+      "evidence": [
+        {
+          "source": "contractor_remote_access.md",
+          "quote": "Contractors do not receive BrightSecure VPN access. They connect to Brightwick systems through Brightwick Remote Workspace, a browser-based virtual desktop available at workspace.brightwick.example."
+        }
+      ],
+      "trap": "The employee VPN instructions in company_it_handbook.md don't apply to contractors.",
+      "human_verified": true
+    },
+    {
+      "id": "A02",
+      "category": "audience_trap",
+      "question": "I work on the shop floor in one of the stores. Can I get VPN access?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "store_network_access.md",
+        "policy_access_control.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Store employees use the store network and aren't eligible for VPN access. Only store managers can request it, with approval from their regional operations manager.",
+      "key_facts": [
+        "store employees are not eligible",
+        "only store managers, with regional operations manager approval"
+      ],
+      "evidence": [
+        {
+          "source": "store_network_access.md",
+          "quote": "Store employees other than store managers are not eligible for VPN access."
+        }
+      ],
+      "trap": "The employee VPN instructions in company_it_handbook.md don't apply to store staff.",
+      "human_verified": true
+    },
+    {
+      "id": "A03",
+      "category": "audience_trap",
+      "question": "I'm a store manager and need the regional sales reports when I'm away from the store. How do I get access?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "store_network_access.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Request BrightSecure VPN access through ServicePoint. The request must be approved by your regional operations manager.",
+      "key_facts": [
+        "request VPN access in ServicePoint",
+        "approved by the regional operations manager"
+      ],
+      "evidence": [
+        {
+          "source": "store_network_access.md",
+          "quote": "may request BrightSecure VPN access through ServicePoint. The request must be approved by the regional operations manager."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "A04",
+      "category": "audience_trap",
+      "question": "I'm a contractor. Can I get a hardware security key for MFA?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "contractor_remote_access.md",
+        "lost_hardware_key.txt"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Hardware security keys aren't issued to contractors. Contractors use the company authenticator app for MFA.",
+      "key_facts": [
+        "no hardware keys for contractors",
+        "use the company authenticator app"
+      ],
+      "evidence": [
+        {
+          "source": "contractor_remote_access.md",
+          "quote": "Hardware security keys are not issued to contractors."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "A05",
+      "category": "audience_trap",
+      "question": "The receipt printer at my till has stopped printing. Do I need to tap my badge to release the job?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "store_receipt_printer.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Till receipt printers are USB thermal printers connected to the POS terminal and don't use Follow-Me printing. Check the roll is loaded with the shiny side facing the print head, close the cover until it clicks, turn the printer off and on, and reprint the last receipt. If it still fails, raise a P3 ticket with the POS terminal ID and printer serial number, and offer email receipts meanwhile.",
+      "key_facts": [
+        "not Follow-Me, no badge",
+        "check paper shiny side to print head, close cover, power cycle, reprint",
+        "P3 ticket with terminal ID and serial number"
+      ],
+      "evidence": [
+        {
+          "source": "store_receipt_printer.md",
+          "quote": "They are not network printers and do not use Follow-Me printing."
+        },
+        {
+          "source": "store_receipt_printer.md",
+          "quote": "Open the cover and check that the roll is loaded with the shiny side facing the print head."
+        }
+      ],
+      "trap": "follow_me_printing.txt applies to headquarters printers, not till receipt printers.",
+      "human_verified": true
+    },
+    {
+      "id": "A06",
+      "category": "audience_trap",
+      "question": "I printed a document at headquarters but nothing came out of the printer. What should I check?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "follow_me_printing.txt"
+      ],
+      "source_match": "any",
+      "reference_answer": "Headquarters uses Follow-Me printing. Check you printed to the BW-FollowMe queue, not a printer's direct queue, then tap your building badge on any headquarters printer to release it. If your badge isn't recognised, link it again by entering your username on the printer screen. Jobs are deleted after 24 hours if not released.",
+      "key_facts": [
+        "print to BW-FollowMe",
+        "tap your badge to release",
+        "jobs held 24 hours"
+      ],
+      "evidence": [
+        {
+          "source": "follow_me_printing.txt",
+          "quote": "Job does not appear: check that you printed to BW-FollowMe and not to a printer's direct queue."
+        },
+        {
+          "source": "follow_me_printing.txt",
+          "quote": "Jobs are held for 24 hours."
+        }
+      ],
+      "trap": "store_receipt_printer.md applies to till printers, not headquarters printing.",
+      "human_verified": true
+    },
+    {
+      "id": "A07",
+      "category": "audience_trap",
+      "question": "I'm starting as a sales assistant in a store next week. Will I get a laptop on my first day?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "new_starter_first_day.txt",
+        "sop_employee_onboarding.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Store staff don't receive a laptop. They use the store's StoreHub PC and the POS terminals.",
+      "key_facts": [
+        "no laptop for store staff",
+        "use the store's StoreHub PC"
+      ],
+      "evidence": [
+        {
+          "source": "new_starter_first_day.txt",
+          "quote": "Store staff do not receive a laptop; they use the store's StoreHub PC."
+        }
+      ],
+      "trap": "Headquarters and remote staff do get laptops, so a generic new-starter answer is wrong here.",
+      "human_verified": true
+    },
+    {
+      "id": "A08",
+      "category": "audience_trap",
+      "question": "Can I connect my personal phone to the BW-Store-Ops Wi-Fi in my store?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "store_network_access.md",
+        "wifi_networks.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. BW-Store-Ops is reserved for store devices. Personal phones must use BW-Guest. Connecting a personal device to BW-Store-Ops is a policy breach, and it's blocked automatically.",
+      "key_facts": [
+        "BW-Store-Ops is for store devices only",
+        "personal phones use BW-Guest",
+        "it's a policy breach and gets blocked"
+      ],
+      "evidence": [
+        {
+          "source": "store_network_access.md",
+          "quote": "The BW-Store-Ops network is reserved for store devices. Personal phones must use BW-Guest."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "M01",
+      "category": "multi_doc",
+      "question": "Our store's fibre line just went down. Will the tills keep working, and if the store goes completely offline, how long can we keep taking card payments?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "runbook_store_network_outage.md",
+        "pos_terminal_offline.md"
+      ],
+      "source_match": "all",
+      "reference_answer": "The store fails over to its 4G/LTE backup router automatically within 2 minutes, and POS terminals keep working normally on the backup. If the store goes completely offline, the terminals switch to offline mode, which holds up to 4 hours of card transactions; after that only cash can be accepted.",
+      "key_facts": [
+        "automatic LTE backup within 2 minutes, POS keeps working",
+        "offline mode holds 4 hours of card transactions",
+        "then cash only"
+      ],
+      "evidence": [
+        {
+          "source": "runbook_store_network_outage.md",
+          "quote": "If the fibre circuit fails, the store fails over to the LTE backup automatically within 2 minutes."
+        },
+        {
+          "source": "runbook_store_network_outage.md",
+          "quote": "POS terminals keep working normally."
+        },
+        {
+          "source": "pos_terminal_offline.md",
+          "quote": "Offline mode can hold up to 4 hours of card transactions. After 4 hours, card payments are blocked on that terminal and only cash can be accepted."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "M02",
+      "category": "multi_doc",
+      "question": "My company laptop was stolen from my car. What should I do, and what will IT do about it?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "company_it_handbook.md",
+        "runbook_security_incident_triage.md"
+      ],
+      "source_match": "all",
+      "reference_answer": "Report it immediately to the IT Service Desk and your manager, with the asset tag if you have it and the last known location, and don't try to recover it yourself. IT starts a remote lock within 1 hour of the report, and if the laptop isn't recovered within 24 hours, or the theft is confirmed, the SOC orders a remote wipe.",
+      "key_facts": [
+        "report immediately to the service desk and manager",
+        "give the asset tag and last known location",
+        "remote lock within 1 hour",
+        "remote wipe if not recovered within 24 hours"
+      ],
+      "evidence": [
+        {
+          "source": "company_it_handbook.md",
+          "quote": "Immediately report a lost or stolen company laptop to the IT Service Desk and your manager."
+        },
+        {
+          "source": "runbook_security_incident_triage.md",
+          "quote": "Start a remote lock within 1 hour of the report."
+        },
+        {
+          "source": "runbook_security_incident_triage.md",
+          "quote": "If the laptop is not recovered within 24 hours, or a theft is confirmed, the SOC orders a remote wipe."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "M03",
+      "category": "multi_doc",
+      "question": "My laptop still won't connect to BW-Corp Wi-Fi after restarting it. What else should I check, and how quickly will IT respond if I raise a ticket?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "wifi_networks.md",
+        "policy_it_service_levels.pdf"
+      ],
+      "source_match": "all",
+      "reference_answer": "Check the laptop's date and time, since a wrong clock causes certificate errors, and make sure it has connected to a wired network or the VPN in the last 60 days so its device certificate can renew. If it still fails, raise a P3 ticket with the asset tag and error message. P3 tickets get a first response within 4 business hours and a resolution target of 3 business days.",
+      "key_facts": [
+        "check date and time",
+        "connected to wired network or VPN in the last 60 days",
+        "P3 ticket",
+        "first response 4 business hours, resolution 3 business days"
+      ],
+      "evidence": [
+        {
+          "source": "wifi_networks.md",
+          "quote": "Make sure the laptop has connected to a wired network or the VPN in the last 60 days."
+        },
+        {
+          "source": "wifi_networks.md",
+          "quote": "If it still fails, raise a P3 ticket in ServicePoint and include the laptop asset tag and the error message."
+        },
+        {
+          "source": "policy_it_service_levels.pdf",
+          "quote": "P3 4 business hours 3 business days"
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "M04",
+      "category": "multi_doc",
+      "question": "I lost my hardware security key and it was my only sign-in method. How do I sign in now, and how long will that temporary access last?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "lost_hardware_key.txt",
+        "mfa_new_phone.md"
+      ],
+      "source_match": "all",
+      "reference_answer": "Call the IT Service Desk straight away, no later than 1 hour after noticing; the key is revoked when reported. After verifying your identity, the service desk issues a Temporary Access Pass, which is valid for 8 hours. A replacement key is normally available within 3 business days from the IT Bar on Level 2 or by courier.",
+      "key_facts": [
+        "report within 1 hour by phone",
+        "Temporary Access Pass after identity verification",
+        "TAP valid 8 hours",
+        "replacement within 3 business days"
+      ],
+      "evidence": [
+        {
+          "source": "lost_hardware_key.txt",
+          "quote": "If the key was your only method, the IT Service Desk can issue a Temporary Access Pass after verifying your identity, as described in KB-1030."
+        },
+        {
+          "source": "mfa_new_phone.md",
+          "quote": "A TAP is valid for 8 hours"
+        },
+        {
+          "source": "lost_hardware_key.txt",
+          "quote": "Replacements are normally available within 3 business days."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "M05",
+      "category": "multi_doc",
+      "question": "I entered my password on a phishing site. What should I do, and how fast will IT respond?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "report_phishing.md",
+        "policy_it_service_levels.pdf"
+      ],
+      "source_match": "all",
+      "reference_answer": "Change your password immediately in MyAccess and call the IT Service Desk, saying \"possible credential compromise\". It's logged as a P2 security incident, and P2 incidents get a first response within 30 minutes, around the clock.",
+      "key_facts": [
+        "change password in MyAccess",
+        "call the service desk",
+        "P2",
+        "first response within 30 minutes"
+      ],
+      "evidence": [
+        {
+          "source": "report_phishing.md",
+          "quote": "The service desk logs a P2 security incident, and the SOC signs you out of all sessions."
+        },
+        {
+          "source": "policy_it_service_levels.pdf",
+          "quote": "P2 30 minutes 8 hours"
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "J01",
+      "category": "jargon",
+      "question": "BW-FM job vanished after a day, where did it go?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "follow_me_printing.txt"
+      ],
+      "source_match": "any",
+      "reference_answer": "Jobs sent to the BW-FollowMe queue are held for 24 hours. If they aren't released by tapping your badge at a printer in that time, they're deleted, so print it again.",
+      "key_facts": [
+        "held for 24 hours",
+        "unreleased jobs are deleted"
+      ],
+      "evidence": [
+        {
+          "source": "follow_me_printing.txt",
+          "quote": "Jobs are held for 24 hours. Unreleased jobs are deleted after that."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "J02",
+      "category": "jargon",
+      "question": "Need JIT admin for a dev tool. How?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "software_request_process.md",
+        "policy_access_control.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "Developers request time-limited elevation through the Privileged Access tool. It needs manager approval and lasts up to 4 hours per request.",
+      "key_facts": [
+        "Privileged Access tool",
+        "manager approval",
+        "max 4 hours"
+      ],
+      "evidence": [
+        {
+          "source": "software_request_process.md",
+          "quote": "Developers who need elevated rights for their work can request time-limited elevation through the Privileged Access tool."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "J03",
+      "category": "jargon",
+      "question": "Store's on LTE failover. Will the tills still work?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "runbook_store_network_outage.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Yes. POS terminals keep working normally on the LTE backup. StoreHub is slower than usual, and background traffic like camera uploads and software updates is paused.",
+      "key_facts": [
+        "POS works normally",
+        "StoreHub slower",
+        "background traffic paused"
+      ],
+      "evidence": [
+        {
+          "source": "runbook_store_network_outage.md",
+          "quote": "POS terminals keep working normally."
+        },
+        {
+          "source": "runbook_store_network_outage.md",
+          "quote": "StoreHub is slower than usual."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "J04",
+      "category": "jargon",
+      "question": "SSO keeps bouncing me back to the login page",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "sso_login_errors.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Check your device's date and time, since more than 5 minutes off causes SSO to fail. Then clear cookies for myaccess.brightwick.example or try a private window, and close all browser windows and sign in again.",
+      "key_facts": [
+        "check the device clock (5 minutes)",
+        "clear cookies or use a private window",
+        "close browsers and sign in again"
+      ],
+      "evidence": [
+        {
+          "source": "sso_login_errors.md",
+          "quote": "A difference of more than 5 minutes from the real time causes SSO to fail."
+        },
+        {
+          "source": "sso_login_errors.md",
+          "quote": "Clear cookies for myaccess.brightwick.example, or try a private browser window."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U01",
+      "category": "single_doc",
+      "question": "How long before an unused meeting room booking is released?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "meeting_room_av.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "A booking is released automatically if nobody checks in on the panel outside the room within 15 minutes of the start time.",
+      "key_facts": [
+        "15 minutes",
+        "check in on the panel outside the room"
+      ],
+      "evidence": [
+        {
+          "source": "meeting_room_av.md",
+          "quote": "A booking is released automatically if nobody checks in on the panel outside the room within 15 minutes of the start time."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U02",
+      "category": "single_doc",
+      "question": "The Teams Rooms console in our conference room is frozen. Should I unplug it?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "meeting_room_av.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Tap More, then Restart room. Don't unplug the console, because it takes about 10 minutes to recover. If the room still doesn't work, call the IT Service Desk on extension 4357 with the room name.",
+      "key_facts": [
+        "tap More, then Restart room",
+        "don't unplug it (about 10 minutes to recover)"
+      ],
+      "evidence": [
+        {
+          "source": "meeting_room_av.md",
+          "quote": "Do not unplug the console, because it takes about 10 minutes to recover."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U03",
+      "category": "audience_trap",
+      "question": "A visitor from a supplier wants to present in our conference room. Can they use the room console?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "meeting_room_av.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. External visitors can't use the console. They can present by connecting the room's USB-C cable to their own laptop, which shows their screen without giving them access to the room camera or the Brightwick network.",
+      "key_facts": [
+        "visitors can't use the console",
+        "they connect the USB-C cable to their own laptop"
+      ],
+      "evidence": [
+        {
+          "source": "meeting_room_av.md",
+          "quote": "External visitors cannot use the console. They can present by connecting the USB-C cable to their own laptop"
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U04",
+      "category": "single_doc",
+      "question": "Can I set an out-of-office reply on my colleague's mailbox while they're unexpectedly away?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "out_of_office_and_signature.txt"
+      ],
+      "source_match": "any",
+      "reference_answer": "No, you can't set one on another person's mailbox. Their line manager raises a request in ServicePoint under \"Mailbox changes\", and the Messaging team sets the reply within 1 business day.",
+      "key_facts": [
+        "you can't set it yourself",
+        "line manager requests it in ServicePoint under Mailbox changes",
+        "set within 1 business day"
+      ],
+      "evidence": [
+        {
+          "source": "out_of_office_and_signature.txt",
+          "quote": "You cannot set an out-of-office reply on another person's mailbox."
+        },
+        {
+          "source": "out_of_office_and_signature.txt",
+          "quote": "The Messaging team sets the reply within 1 business day of the request"
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U05",
+      "category": "single_doc",
+      "question": "Can I add the company logo to my email signature?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "out_of_office_and_signature.txt"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Signatures are plain text with no images or logos. The company logo is added automatically to external email by the mail system, so adding your own copy shows it twice.",
+      "key_facts": [
+        "no images or logos in the signature",
+        "the logo is added automatically to external email"
+      ],
+      "evidence": [
+        {
+          "source": "out_of_office_and_signature.txt",
+          "quote": "The company logo is added automatically to external email by the mail system, so adding your own copy shows it twice."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U06",
+      "category": "single_doc",
+      "question": "What should I put in my external out-of-office message?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "out_of_office_and_signature.txt"
+      ],
+      "source_match": "any",
+      "reference_answer": "Keep it short: the date you're back and who to contact instead, ideally a shared mailbox or team address. Don't include your personal mobile number, your home address or where you're travelling.",
+      "key_facts": [
+        "date you're back and an alternative contact",
+        "no personal mobile, home address or travel location"
+      ],
+      "evidence": [
+        {
+          "source": "out_of_office_and_signature.txt",
+          "quote": "Keep external replies short: the date you are back and who to contact instead. Do not include your personal mobile number, your home address, or where you are travelling."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U07",
+      "category": "single_doc",
+      "question": "How often are performance laptops replaced?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "laptop_repair_and_replacement.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "Every 3 years. Standard laptops are replaced every 4 years. The Endpoint team contacts you when yours is due, so you don't need to raise a request.",
+      "key_facts": [
+        "performance laptops every 3 years",
+        "standard laptops every 4 years",
+        "no request needed"
+      ],
+      "evidence": [
+        {
+          "source": "laptop_repair_and_replacement.docx",
+          "quote": "Performance laptop 3 years"
+        },
+        {
+          "source": "laptop_repair_and_replacement.docx",
+          "quote": "You are contacted by the Endpoint team when yours is due, so you do not need to raise a request."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U08",
+      "category": "single_doc",
+      "question": "I spilled coffee on my laptop. What should I do?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "laptop_repair_and_replacement.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "Turn it off immediately by holding the power button, unplug it and don't turn it back on. Then report it in ServicePoint under \"Hardware fault\", or call the IT Service Desk on extension 4357 if you can't use the laptop at all.",
+      "key_facts": [
+        "turn it off immediately (hold the power button)",
+        "unplug it and don't turn it back on",
+        "report it to IT"
+      ],
+      "evidence": [
+        {
+          "source": "laptop_repair_and_replacement.docx",
+          "quote": "If you spill liquid on the laptop, turn it off immediately by holding the power button, unplug it, and do not turn it back on."
+        }
+      ],
+      "trap": "The opposite of the malware advice (S08), where the device must stay powered on. Mixing the two up is wrong.",
+      "human_verified": true
+    },
+    {
+      "id": "U09",
+      "category": "single_doc",
+      "question": "My laptop screen cracked and I work from home. How do I get a working laptop?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "laptop_repair_and_replacement.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "Report it in ServicePoint under \"Hardware fault\", or call the IT Service Desk on extension 4357 if you can't use the laptop at all; it's logged as P3. Remote employees get a replacement by courier within 2 business days and return the faulty laptop in the same box. Don't try to repair it yourself or use a repair shop.",
+      "key_facts": [
+        "report as a Hardware fault (P3)",
+        "replacement by courier within 2 business days",
+        "no self or third-party repairs"
+      ],
+      "evidence": [
+        {
+          "source": "laptop_repair_and_replacement.docx",
+          "quote": "Employees who work from a store or from home get a replacement by courier within 2 business days, and return the faulty laptop in the same box."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U10",
+      "category": "single_doc",
+      "question": "Do I need my manager's approval to order a new headset?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "laptop_repair_and_replacement.docx"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Headsets and other standard accessories are ordered from the Hardware catalogue in ServicePoint without manager approval, and arrive within 5 business days. A second monitor does need line manager approval.",
+      "key_facts": [
+        "no approval for standard accessories",
+        "Hardware catalogue in ServicePoint",
+        "arrive within 5 business days"
+      ],
+      "evidence": [
+        {
+          "source": "laptop_repair_and_replacement.docx",
+          "quote": "Standard accessories do not need manager approval and arrive within 5 business days."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U11",
+      "category": "single_doc",
+      "question": "The PIN pad at my till says 'Tamper detected'. What do I do?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "pin_pad_not_working.pdf"
+      ],
+      "source_match": "any",
+      "reference_answer": "Stop using it. Tamper detected means the device has locked itself for security and can't be reset in store. It's a P2, so call the IT Service Desk on extension 4357. Use the spare PIN pad from the store's IT cupboard if you have one.",
+      "key_facts": [
+        "stop using it",
+        "can't be reset in store",
+        "P2: call the service desk on 4357"
+      ],
+      "evidence": [
+        {
+          "source": "pin_pad_not_working.pdf",
+          "quote": "Tamper detected means the device has locked itself for security, and it cannot be reset in store."
+        },
+        {
+          "source": "pin_pad_not_working.pdf",
+          "quote": "Tamper detected on any PIN pad P2 Call the IT Service Desk on extension 4357"
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U12",
+      "category": "single_doc",
+      "question": "A customer's card shows 'Declined' on the PIN pad. Is the PIN pad broken?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "pin_pad_not_working.pdf"
+      ],
+      "source_match": "any",
+      "reference_answer": "No. Declined means the customer's bank refused the payment, and the PIN pad is working. Ask the customer for another way to pay, and don't retry the same card more than twice.",
+      "key_facts": [
+        "the bank refused the payment, the PIN pad works",
+        "ask for another payment method",
+        "no more than two retries"
+      ],
+      "evidence": [
+        {
+          "source": "pin_pad_not_working.pdf",
+          "quote": "the customer's bank refused the payment. The PIN pad is working."
+        },
+        {
+          "source": "pin_pad_not_working.pdf",
+          "quote": "Do not retry the same card more than twice."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U13",
+      "category": "multi_doc",
+      "question": "The PIN pad won't take cards and the POS screen shows an Offline banner. Which problem do I fix, and can we still take card payments?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "pin_pad_not_working.pdf",
+        "pos_terminal_offline.md"
+      ],
+      "source_match": "all",
+      "reference_answer": "Treat it as the POS terminal being offline and follow KB-1050, not the PIN pad steps. In offline mode the terminal still accepts card payments for up to 4 hours, then only cash. Check the other terminals, check the network cable, restart the terminal, and raise a P3 with the terminal ID if it stays offline.",
+      "key_facts": [
+        "follow the POS offline article (KB-1050)",
+        "offline mode takes cards for up to 4 hours",
+        "then cash only"
+      ],
+      "evidence": [
+        {
+          "source": "pin_pad_not_working.pdf",
+          "quote": "If the POS screen shows an \"Offline\" banner, follow KB-1050 instead."
+        },
+        {
+          "source": "pos_terminal_offline.md",
+          "quote": "Offline mode can hold up to 4 hours of card transactions."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U14",
+      "category": "single_doc",
+      "question": "I forgot my voicemail PIN. How do I reset it?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "voicemail_pin_reset.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Sign in to MyAccess, open Phone settings and choose Reset voicemail PIN. A temporary PIN is shown, valid for 24 hours. Call extension 6245, enter the temporary PIN and choose a new one.",
+      "key_facts": [
+        "MyAccess > Phone settings > Reset voicemail PIN",
+        "temporary PIN valid 24 hours",
+        "call extension 6245"
+      ],
+      "evidence": [
+        {
+          "source": "voicemail_pin_reset.md",
+          "quote": "Choose **Reset voicemail PIN**. A temporary PIN is shown on screen and is valid for 24 hours."
+        },
+        {
+          "source": "voicemail_pin_reset.md",
+          "quote": "Call extension 6245, enter the temporary PIN, and choose a new one when prompted."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U15",
+      "category": "single_doc",
+      "question": "How long are voicemail messages kept?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "voicemail_pin_reset.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "30 days. Voicemail messages are deleted automatically after that.",
+      "key_facts": [
+        "30 days"
+      ],
+      "evidence": [
+        {
+          "source": "voicemail_pin_reset.md",
+          "quote": "Voicemail messages are deleted automatically after 30 days."
+        }
+      ],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "U16",
+      "category": "jargon",
+      "question": "VM box locked after too many tries, how long till it unlocks?",
+      "expected_route": "private_kb",
+      "expected_sources": [
+        "voicemail_pin_reset.md"
+      ],
+      "source_match": "any",
+      "reference_answer": "Voicemail locks after 5 wrong PIN attempts in a row and unlocks on its own after 30 minutes. You can unlock it straight away by resetting the PIN in MyAccess.",
+      "key_facts": [
+        "locks after 5 wrong attempts",
+        "unlocks after 30 minutes",
+        "or reset the PIN in MyAccess"
+      ],
+      "evidence": [
+        {
+          "source": "voicemail_pin_reset.md",
+          "quote": "Your voicemail box locks after 5 wrong PIN attempts in a row. It unlocks on its own after 30 minutes"
+        }
+      ],
+      "trap": "Account lockout (KB-1063) uses the same numbers, so an answer about the user account instead of voicemail would look right but miss the voicemail-specific reset.",
+      "human_verified": true
+    },
+    {
+      "id": "W01",
+      "category": "web_general",
+      "question": "How do I clear the Microsoft Teams cache on Windows 11?",
+      "expected_route": "web_search",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "Quit Teams completely, delete the contents of the Teams cache folder, then restart Teams. The folder location differs between classic Teams and new Teams.",
+      "key_facts": [
+        "quit Teams fully",
+        "delete the cache folder contents",
+        "restart Teams"
+      ],
+      "evidence": [],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "W02",
+      "category": "web_general",
+      "question": "How do I take a screenshot of part of my screen on Windows 11?",
+      "expected_route": "web_search",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "Press Windows key + Shift + S to open the Snipping Tool overlay, then select the area. The capture is copied to the clipboard.",
+      "key_facts": [
+        "Windows key + Shift + S",
+        "Snipping Tool"
+      ],
+      "evidence": [],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "W03",
+      "category": "web_general",
+      "question": "How do I save a Word document as a PDF?",
+      "expected_route": "web_search",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "In Word, choose File, then Save As or Export, and pick PDF as the file type.",
+      "key_facts": [
+        "File > Save As or Export",
+        "choose PDF"
+      ],
+      "evidence": [],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "W04",
+      "category": "web_general",
+      "question": "How can I check my laptop's battery health on Windows 11?",
+      "expected_route": "web_search",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "Run powercfg /batteryreport in Command Prompt or Terminal. It saves an HTML report that compares the battery's design capacity with its current full-charge capacity.",
+      "key_facts": [
+        "powercfg /batteryreport",
+        "compare design capacity with full charge capacity"
+      ],
+      "evidence": [],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "W05",
+      "category": "web_general",
+      "question": "What does the Chrome error DNS_PROBE_FINISHED_NXDOMAIN mean?",
+      "expected_route": "web_search",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "The domain name couldn't be resolved by DNS, so Chrome can't find the site. Check the address for typos, check the network connection, and try flushing the DNS cache or changing DNS servers.",
+      "key_facts": [
+        "DNS couldn't resolve the domain",
+        "check the URL and connection",
+        "flush DNS"
+      ],
+      "evidence": [],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "D01",
+      "category": "small_talk",
+      "question": "Hi!",
+      "expected_route": "direct",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "A short greeting that offers help with IT questions. No retrieval and no Brightwick policy details.",
+      "key_facts": [
+        "greeting"
+      ],
+      "evidence": [],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "D02",
+      "category": "small_talk",
+      "question": "Thanks, that fixed it!",
+      "expected_route": "direct",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "A short acknowledgement. No retrieval and no Brightwick policy details.",
+      "key_facts": [
+        "acknowledgement"
+      ],
+      "evidence": [],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "D03",
+      "category": "small_talk",
+      "question": "What kinds of things can you help me with?",
+      "expected_route": "direct",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "A short description of the IT support topics it can help with, without stating specific Brightwick policies.",
+      "key_facts": [
+        "describes what it can help with"
+      ],
+      "evidence": [],
+      "trap": null,
+      "human_verified": true
+    },
+    {
+      "id": "X01",
+      "category": "absent_topic",
+      "question": "When is payday this month?",
+      "expected_route": "insufficient_evidence",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "The knowledge base doesn't cover this. The agent should say it couldn't find reliable information and point to the IT Service Desk (ServicePoint, extension 4357 or the IT Bar), without inventing a Brightwick policy.",
+      "key_facts": [
+        "declines",
+        "no invented payroll date"
+      ],
+      "evidence": [],
+      "trap": "Payroll is deliberately absent from the knowledge base.",
+      "human_verified": true
+    },
+    {
+      "id": "X02",
+      "category": "absent_topic",
+      "question": "How do I claim expenses for a client dinner?",
+      "expected_route": "insufficient_evidence",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "The knowledge base doesn't cover this. The agent should say it couldn't find reliable information and point to the IT Service Desk (ServicePoint, extension 4357 or the IT Bar), without inventing a Brightwick policy.",
+      "key_facts": [
+        "declines",
+        "no invented expenses process"
+      ],
+      "evidence": [],
+      "trap": "Expenses and reimbursement are deliberately absent.",
+      "human_verified": true
+    },
+    {
+      "id": "X03",
+      "category": "absent_topic",
+      "question": "Where can I park at headquarters?",
+      "expected_route": "insufficient_evidence",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "The knowledge base doesn't cover this. The agent should say it couldn't find reliable information and point to the IT Service Desk (ServicePoint, extension 4357 or the IT Bar), without inventing a Brightwick policy.",
+      "key_facts": [
+        "declines",
+        "no invented parking details"
+      ],
+      "evidence": [],
+      "trap": "Parking is deliberately absent.",
+      "human_verified": true
+    },
+    {
+      "id": "X04",
+      "category": "absent_topic",
+      "question": "How many days of annual leave do I get?",
+      "expected_route": "insufficient_evidence",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "The knowledge base doesn't cover this. The agent should say it couldn't find reliable information and point to the IT Service Desk (ServicePoint, extension 4357 or the IT Bar), without inventing a Brightwick policy.",
+      "key_facts": [
+        "declines",
+        "no invented leave entitlement"
+      ],
+      "evidence": [],
+      "trap": "Annual and sick leave are deliberately absent. A web answer with national leave law would be wrong for this question.",
+      "human_verified": true
+    },
+    {
+      "id": "X05",
+      "category": "absent_topic",
+      "question": "Who do I contact to get toner for the printers at headquarters?",
+      "expected_route": "insufficient_evidence",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "The knowledge base doesn't cover this. The agent should say it couldn't find reliable information and point to the IT Service Desk (ServicePoint, extension 4357 or the IT Bar), without inventing a Brightwick policy.",
+      "key_facts": [
+        "declines",
+        "no invented toner process"
+      ],
+      "evidence": [],
+      "trap": "Printer toner is deliberately absent, but follow_me_printing.txt is close enough to tempt an answer from the printing docs.",
+      "human_verified": true
+    },
+    {
+      "id": "X06",
+      "category": "absent_topic",
+      "question": "Can I get a MacBook instead of a Windows laptop?",
+      "expected_route": "insufficient_evidence",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "The knowledge base doesn't cover this. The agent should say it couldn't find reliable information and point to the IT Service Desk (ServicePoint, extension 4357 or the IT Bar), without inventing a Brightwick policy.",
+      "key_facts": [
+        "declines",
+        "no invented Mac policy"
+      ],
+      "evidence": [],
+      "trap": "Mac and Linux support is deliberately absent. The uploaded laptop replacement document mentions performance laptops but not Macs.",
+      "human_verified": true
+    },
+    {
+      "id": "X07",
+      "category": "absent_topic",
+      "question": "How do I book a hotel for a business trip?",
+      "expected_route": "insufficient_evidence",
+      "expected_sources": [],
+      "source_match": "none",
+      "reference_answer": "The knowledge base doesn't cover this. The agent should say it couldn't find reliable information and point to the IT Service Desk (ServicePoint, extension 4357 or the IT Bar), without inventing a Brightwick policy.",
+      "key_facts": [
+        "declines",
+        "no invented travel booking process"
+      ],
+      "evidence": [],
+      "trap": "Hotel and travel booking are deliberately absent, but the Acceptable Use Policy has a travel section that can tempt an answer.",
+      "human_verified": true
+    }
+  ]
+}
