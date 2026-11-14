@@ -50,9 +50,10 @@ def get_embeddings():
         _embeddings = OpenAIEmbeddings(
             model=settings.embedding_model,
             api_key=settings.openai_api_key,
-            # points the client at AIRouter.
             base_url=settings.openai_base_url,
-            check_embedding_ctx_length=False
+            check_embedding_ctx_length=False,
+            timeout=30,
+            max_retries=2,
         )
     return _embeddings
 

@@ -23,9 +23,9 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT))  # lets "import app" work when this file is run directly
 
-from app.rag.workflow import ask  
+from app.rag.workflow import ask  # noqa: E402
 
 EVALS = Path(__file__).resolve().parent
 QUESTIONS = EVALS / "questions.json"
@@ -50,7 +50,8 @@ def run_one(question: dict) -> dict:
         state, error = {}, f"{type(exc).__name__}: {exc}"
     seconds = time.perf_counter() - started
 
-    retrieved = [file_name(d.metadata.get("source", "")) for d in state.get("kb_docs", []) or []]
+    kb_docs = state.get("kb_docs", []) or []
+    retrieved = [file_name(d.metadata.get("source", "")) for d in kb_docs]
     citations = state.get("citations", []) or []
     trace = [str(t) for t in state.get("trace", []) or []]
     return {
@@ -66,13 +67,16 @@ def run_one(question: dict) -> dict:
         "cited_kb": sorted({file_name(c.get("title", "")) for c in citations if c.get("type") == "private_kb"}),
         "cited_web": [c.get("url", "") for c in citations if c.get("type") != "private_kb"],
         "rewrites": sum(1 for t in trace if t.strip().lower().startswith("query rewrite")),
+        # the text the answer was generated from, for RAGAS (score_ragas.py)
+        "kb_contexts": [d.page_content for d in kb_docs],
+        "web_context": state.get("web_results", "") or "",
         "trace": trace,
         "seconds": round(seconds, 2),
         "error": error,
     }
 
 
-# ---------------------------------------------------------------- scoring
+#scoring
 
 def score(r: dict) -> dict:
     """Adds pass/fail checks to one result. A check is None when it doesn't apply."""
@@ -165,7 +169,7 @@ def build_report(results: list[dict], started: str) -> str:
     return "\n".join(lines) + "\n"
 
 
-# ---------------------------------------------------------------- main
+#main
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run the QualiRAG evaluation set.")

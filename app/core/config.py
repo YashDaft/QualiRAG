@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     pinecone_index_name: str = "qaulirag"  
     anthropic_model: str = "claude-haiku-4-5-20251001"
     pinecone_namespace: str = "knowledge_base"
-    top_k: int = 4
+    top_k: int = 6
     max_retries: int = 1
     admin_api_key: str = "upload_documents"
     #for storing conversations

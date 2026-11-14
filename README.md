@@ -9,7 +9,7 @@ Built as a corrective RAG agent with LangGraph, Claude, Pinecone and FastAPI, on
 ![FastAPI](https://img.shields.io/badge/API-FastAPI-009688)
 ![Deployed on Vercel](https://img.shields.io/badge/deployed-Vercel-000000)
 
-**Live demo:** quali-rag.vercel.app
+**Live demo:** [quali-rag.vercel.app](https://quali-rag.vercel.app)
 
 Try "How do I set up MFA on my new phone?" for a knowledge base answer, "How do I clear the Microsoft Teams cache on Windows 11?" for a web answer, and "What is the parental leave policy?" to see it decline. The panel on the right shows which path the agent took and why.
 
@@ -31,11 +31,11 @@ QualiRAG handles these by grading the evidence before it writes anything.
 ![QualiRAG architecture](docs/architecture.png)
 
 1. **Route.** Claude decides whether the message is an IT question or small talk. Small talk gets a direct reply with no retrieval.
-2. **Retrieve.** The question is embedded and the 4 closest chunks are pulled from Pinecone.
-3. **Grade the knowledge base evidence.** Claude marks it `good` only if the chunks contain the specific facts needed. It marks it `weak` if they're off-topic, only partly answer the question, come from a superseded document, or are meant for a different audience.
+2. **Retrieve.** The question is embedded and the 6 closest chunks are pulled from Pinecone. Each chunk comes back with its document's status: current or superseded.
+3. **Grade the knowledge base evidence.** Claude ignores passages from superseded documents and marks the evidence `good` only if the current passages contain the specific facts needed, or say where to find them. It marks it `weak` if they're off-topic, only partly answer the question, or are meant for a different audience.
 4. **Fall back to the web.** If the knowledge base is weak, Tavily searches the web and the results are graded the same way. Web results can't answer questions about Brightwick's own policies, so those grade `weak`.
 5. **Rewrite and retry.** If both are weak, Claude rewrites the query with different keywords and expanded abbreviations, and the agent searches the knowledge base again. This happens once by default (`MAX_RETRIES=1`).
-6. **Answer or stop.** A good grade leads to an answer that cites its sources: knowledge base file names or web links. If nothing grades good after the retry, the agent returns the service desk contact details instead of an answer.
+6. **Answer or stop.** A good grade leads to an answer with sources. Knowledge base answers cite only the files they actually used, never a superseded policy; web answers link the pages they drew on. If nothing grades good after the retry, the agent returns the service desk contact details instead of an answer.
 
 Every step is recorded in a trace that comes back with the answer, so you can see why the agent did what it did.
 
@@ -45,10 +45,11 @@ Every step is recorded in a trace that comes back with the answer, so you can se
 - Handles superseded policies and audience-specific documents in the knowledge base
 - Web fallback with a separate grade, for general tech questions the knowledge base doesn't cover
 - One automatic query rewrite and retry
-- Citations to the source files or web pages
+- Citations to only the files the answer used, with outdated policies never cited
 - Document upload from the UI (PDF, DOCX, TXT, Markdown), protected by an admin key
 - A live view of the agent's path, its trace and its sources for each answer
 - An audit log of every question, its answer source and its trace (SQLite)
+- A 79-question evaluation harness with RAGAS scoring (see [Evaluation](#evaluation))
 
 ## Tech stack
 
@@ -96,7 +97,10 @@ Every company, person and policy in it is fictional. `data/MANIFEST.md` lists ea
 ├── templates/index.html
 ├── data/
 │   ├── knowledge_base/         # The 35 synthetic documents
+│   ├── upload_samples/         # The 5 documents used to test uploading
 │   └── MANIFEST.md
+├── evals/                      # Question set, harness, RAGAS scoring and results
+├── docs/architecture.png
 ├── ingest_kb.py                # Indexes the whole knowledge base folder
 ├── Dockerfile
 ├── pyproject.toml
@@ -131,7 +135,7 @@ Optional settings and their defaults are in `app/core/config.py`. The ones you'r
 | `EMBEDDING_MODEL` | Embedding model name. With OpenAI directly, use `text-embedding-3-small`. |
 | `ANTHROPIC_MODEL` | Claude model. Defaults to Haiku 4.5. |
 | `PINECONE_INDEX_NAME` | Index to use. It's created on first run if it doesn't exist. |
-| `TOP_K` | Chunks retrieved per search (default 4) |
+| `TOP_K` | Chunks retrieved per search (default 6) |
 | `MAX_RETRIES` | Query rewrites before giving up (default 1) |
 
 **3. Index the knowledge base (once)**
@@ -140,7 +144,7 @@ Optional settings and their defaults are in `app/core/config.py`. The ones you'r
 uv run python ingest_kb.py
 ```
 
-This loads every file in `data/knowledge_base/`, splits it into 900-character chunks with 120 characters of overlap, embeds them and stores them in Pinecone. Chunk IDs are the file name plus the chunk's position, so running it again overwrites the vectors instead of duplicating them.
+This loads every file in `data/knowledge_base/`, splits it into 900-character chunks with 120 characters of overlap, embeds them and stores them in Pinecone. Files containing a `Status: SUPERSEDED` line are marked as superseded in each chunk's metadata, so the agent can ignore them. Chunk IDs are the file name plus the chunk's position, so running it again overwrites the vectors instead of duplicating them.
 
 **4. Start the app**
 
@@ -195,20 +199,44 @@ The live demo runs on Vercel, which detects the FastAPI app in `app/main.py` and
 - **Writable folders.** Vercel functions can only write to `/tmp`, so the deployment sets `AUDIT_DB_PATH=/tmp/audit.db` and `UPLOAD_DIR=/tmp/uploads`. Both reset when the function restarts. Uploaded documents stay searchable, because they live in Pinecone.
 - **Upload batching.** Vectors are upserted to Pinecone without a thread pool (`async_req=False`), because Vercel's runtime doesn't provide the shared memory Python's thread pool needs.
 
+## Evaluation
+
+The agent is measured on 79 labelled questions covering all 40 documents (`evals/`). Each question has an expected route, the source files and a reference answer, and every reference answer is backed by exact quotes from the documents. The harness (`evals/run_eval.py`) scores the agent's decisions, and RAGAS (`evals/score_ragas.py`, GPT-4.1 as judge) scores the answer text.
+
+| Metric | Baseline | Final |
+|---|---|---|
+| Route accuracy | 91% | 94% |
+| Superseded-policy questions routed correctly | 4 of 7 | 6 of 7 |
+| Citation precision | 49% | 98% |
+| Answers citing a superseded policy | 6 | 0 |
+| Wrongly declined questions | 5 | 2 |
+| Retrieval hit rate | 98% | 97% |
+| Faithfulness (RAGAS) | 0.92 | 0.91 |
+| Context recall (RAGAS) | 0.94 | 0.96 |
+
+**What changed between the two runs**
+
+1. **Document status in metadata.** Each chunk now carries its file's status (current or superseded) as metadata, and the grader and answer prompts show it next to every passage. The grader ignores superseded passages instead of treating them as a reason to decline.
+2. **Citations from the passages actually used.** The answer step returns the numbers of the passages it relied on, and only those files are cited.
+3. **Six chunks per search instead of four**, so two-part questions are more likely to find both documents.
+
+A first attempt put the status label inside the chunk text. It fixed some grading errors but lowered retrieval from 98% to 95%, because the label changed every chunk's embedding. Moving the status to metadata kept the gains and restored retrieval.
+
+**Reading the numbers.** Two baseline runs differed by one or two questions, because the model can't be made fully deterministic, so changes of that size are noise. The citation and superseded-policy improvements are well beyond it. The knowledge base is synthetic, so these scores measure the method, not performance on real company data.
+
 ## Known limitations
 
-- Citations list every file that was retrieved, not only the ones the answer used.
-- Each question is answered on its own. There's no conversation memory yet.
+- Two-part questions can still miss the second document, mostly response times stored in a PDF table.
+- General how-to questions, like taking a screenshot, are sometimes answered directly instead of being searched on the web.
+- Each question is answered on its own. There's no conversation memory.
 - The agent's steps appear after the answer finishes, not live.
-- On Vercel, the audit log resets with the function, and uploads are capped at 4.5 MB per file.
-- Upload takes one file at a time.
-- There are no evaluation numbers yet, so answer quality hasn't been measured.
+- On Vercel, the audit log resets with the function, and uploads are capped at 4.5 MB per file, one file at a time.
 
 ## What's next
 
-- An evaluation harness with a labelled question set and RAGAS metrics (faithfulness, answer relevance, context precision), run in CI
-- Citations limited to the passages the answer actually used
-- Streaming the agent's steps to the UI as they happen
+- Query decomposition, so two-part questions search for each part separately
+- A router fix so general how-to questions always go to search
+- Conversation memory for follow-up questions
 
 ## License
 

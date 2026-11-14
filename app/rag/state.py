@@ -24,7 +24,11 @@ class GradeEvidence(BaseModel):
         )
     )
 
-
+class KBAnswer(BaseModel):
+    answer: str = Field(description="The answer for the user, written only from the passages")
+    used_passages: list[int] = Field(
+        description="The numbers of the passages the answer relies on, for example [1, 3]"
+    )
 
 class AgentState(TypedDict):
     question: str
